@@ -14,13 +14,20 @@
   </requires>
   <develStage>beta</develStage>
   <compatibility>
-    <ver>5.0</ver>
+    <ver>5.38</ver>
   </compatibility>
   <comments>Made for Nonprofit Centers Network, by KRD</comments>
   <classloader>
     <psr4 prefix="Civi\" path="Civi"/>
+    <psr0 prefix="CRM_" path="."/>
   </classloader>
   <civix>
     <namespace>CRM/NcnCiviZoom</namespace>
+    <format>23.02.1</format>
   </civix>
+  <mixins>
+    <mixin>menu-xml@1.0.0</mixin>
+    <mixin>smarty-v2@1.0.1</mixin>
+  </mixins>
+  <upgrader>CRM_NcnCiviZoom_Upgrader</upgrader>
 </extension>
