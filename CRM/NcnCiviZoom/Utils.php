@@ -193,10 +193,12 @@ class CRM_NcnCiviZoom_Utils {
     $form->assign('customIdMeeting',$customIds['Meeting'].'_');
     $form->assign('accountId',$customFieldZoomAccount.'_');
     $eventId = null;
-    if(!empty($form->_id)){
+    if(!empty($form->_id)) {
       $eventId = $form->_id;
-    }elseif (!empty($form->_entityId)) {
+    } elseif (!empty($form->_entityId)) {
       $eventId = $form->_entityId;
+    } elseif (!empty(CRM_Utils_Request::retrieve('entityID', 'Positive')) && CRM_Utils_Request::retrieve('type', 'String', NULL, TRUE) == "Event") {
+      $eventId = CRM_Utils_Request::retrieve('entityID', 'Positive');
     }
     $no_of_unmatched = 0;
     if(!empty($eventId)){
@@ -211,10 +213,18 @@ class CRM_NcnCiviZoom_Utils {
           CRM_Core_Error::debug_var('Api error, Entity => CustomValue , action => get ', $e);
         }
         if(!empty($apiResult['values'][0]['latest'])){
-          if(array_key_exists($apiResult['values'][0]['latest'], $zoomList)){
+          if(array_key_exists($apiResult['values'][0]['latest'], array_keys($zoomList))){
+
             $form->setDefaults(['zoom_account_list' => $apiResult['values'][0]['latest']]);
           }
         }
+      }
+      if (!empty($form->_defaultValues[$customIds['Meeting'].'_1'])) {
+        $form->setDefaults([$customIds['Meeting'].'_1' => str_replace(',', '', $form->_defaultValues[$customIds['Meeting'].'_1'])]);
+      }
+
+      if (!empty($form->_defaultValues[$customIds['Webinar'].'_1'])) {
+        $form->setDefaults([$customIds['Webinar'].'_1' => str_replace(',', '', $form->_defaultValues[$customIds['Webinar'].'_1'])]);
       }
 
       // Adding the link to view zoom registrants
@@ -1465,7 +1475,11 @@ class CRM_NcnCiviZoom_Utils {
   /**
    * Do a Zoom request
    */
-  public static function zoomApiRequest(Int $accountId, $url, $params = [], $action = 'get') {
+  public static function zoomApiRequest($accountId, $url, $params = [], $action = 'get') {
+    if (empty($accountId)) {
+      return [false, ['message' => 'Missing account ID']];
+    }
+
     $tokenRecord = CRM_NcnCiviZoom_Form_Settings::createOAuthToken($accountId);
 
     $client = new GuzzleHttp\Client([

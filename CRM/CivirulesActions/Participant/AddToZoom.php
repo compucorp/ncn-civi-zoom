@@ -175,6 +175,11 @@ class CRM_CivirulesActions_Participant_AddToZoom extends CRM_Civirules_Action{
       return [null, null, null];
     }
 
+    if (empty($accountId)) {
+      Civi::log()->warning("ncn-civi-zoom: AddToZoom: accountId for $url was empty");
+      return [null, null, null];
+    }
+
     [$isResponseOK, $result] = CiviZoomUtils::zoomApiRequest($accountId, $url);
 
     if (empty($result['join_url'])) {
