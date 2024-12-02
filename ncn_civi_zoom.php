@@ -236,7 +236,7 @@ function ncn_civi_zoom_civicrm_buildForm($formName, &$form) {
 
   //Add the zoom account list to the form once the custom datatype is loaded
   if($formName == 'CRM_Custom_Form_CustomDataByType'){
-    if(CRM_Utils_Request::retrieve('type', 'String', NULL, TRUE) == 'Event') {
+    if(CRM_Utils_Request::retrieve('type', 'String') == 'Event') {
       $customAccountId = CRM_NcnCiviZoom_Utils::getAccountIdCustomField();
       if(!empty($customAccountId)){
         CRM_NcnCiviZoom_Utils::addZoomListToEventForm($form);
