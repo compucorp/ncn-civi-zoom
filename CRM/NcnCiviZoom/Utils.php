@@ -197,7 +197,7 @@ class CRM_NcnCiviZoom_Utils {
       $eventId = $form->_id;
     } elseif (!empty($form->_entityId)) {
       $eventId = $form->_entityId;
-    } elseif (!empty(CRM_Utils_Request::retrieve('entityID', 'Positive')) && CRM_Utils_Request::retrieve('type', 'String', NULL, TRUE) == "Event") {
+    } elseif (!empty(CRM_Utils_Request::retrieve('entityID', 'Positive')) && CRM_Utils_Request::retrieve('type', 'String') == "Event") {
       $eventId = CRM_Utils_Request::retrieve('entityID', 'Positive');
     }
     $no_of_unmatched = 0;
