@@ -66,7 +66,10 @@ function ncn_civi_zoom_civicrm_upgrade($op, CRM_Queue_Queue $queue = NULL) {
 
 function ncn_civi_zoom_civicrm_permission(&$permissions) {
   $prefix = ts('NcnCiviZoom') . ': '; // name of extension or module
-  $permissions['administer Zoom'] = $prefix . ts('administer Zoom');
+  $permissions['administer Zoom'] = [
+    'label' => $prefix . ts('administer Zoom'),
+    'description' => $prefix . ts('administer Zoom'),
+  ];
 }
 
 /**
