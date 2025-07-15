@@ -7,7 +7,7 @@
     <author>Mathieu Lu</author>
     <email>mathieu@symbiotic.coop</email>
   </maintainer>
-  <releaseDate>2024-11-29</releaseDate>
+  <releaseDate>2025-07-04</releaseDate>
   <version>3.0</version>
   <requires>
     <ext>org.civicoop.civirules</ext>
@@ -18,7 +18,7 @@
     <ver>5.60</ver>
   </compatibility>
   <comments/>
-  <comments>PATCH 3</comments>
+  <comments>PATCH 4</comments>
   <classloader>
     <psr4 prefix="Civi\" path="Civi"/>
     <psr0 prefix="CRM_" path="."/>
