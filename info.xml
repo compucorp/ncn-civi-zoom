@@ -8,7 +8,7 @@
     <email>mathieu@symbiotic.coop</email>
   </maintainer>
   <releaseDate>2025-07-04</releaseDate>
-  <version>3.0</version>
+  <version>7.0.0-alpha1</version>
   <requires>
     <ext>org.civicoop.civirules</ext>
     <ext>oauth-client</ext>
