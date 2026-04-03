@@ -7,7 +7,7 @@
     <author>Mathieu Lu</author>
     <email>mathieu@symbiotic.coop</email>
   </maintainer>
-  <releaseDate>2026-01-22</releaseDate>
+  <releaseDate>2026-04-03</releaseDate>
   <version>7.0.0-beta1</version>
   <requires>
     <ext>org.civicoop.civirules</ext>
